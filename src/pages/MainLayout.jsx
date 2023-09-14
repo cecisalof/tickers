@@ -14,24 +14,9 @@ export default function MainLayout(props) {
                     <div className="row align-items-center mt-md-1">
                     </div>
                     {/* MAIN second section */}
-                    <div className='row d-flex align-middle justify-content-center mb-3'>
-                        <div className='col'>
-                            <Tickers/>
-                        </div>
-                        <div className='col'>
-                            <Tickers/>
-                        </div>
-                        <div className='col'>
-                            <Tickers/>
-                        </div>
-                        <div className='col'>
-                            <Tickers/>
-                        </div>
-                        <div className='col'>
-                            <Tickers/>
-                        </div>
-                        <div className='col'>
-                            <Tickers/>
+                    <div className='row d-flex align-middle justify-content-center mb-3 tickers'>
+                        <div className='col d-flex'>
+                            <Tickers tickers={tickers}/>
                         </div>
                     </div>
                 </div>
