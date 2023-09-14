@@ -5,7 +5,7 @@ export default function Tickers(props) {
 
   return (
     <div className='d-flex align-center'>
-      {Array.isArray(tickers) == true && tickers.map(item => {
+      {Array.isArray(tickers) === true && tickers.map(item => {
         return (
         <div className='d-flex m-2 align-items-center' key={item.id}>
           <img className="tickers-icon mx-1" src={item.icon} alt="" />
