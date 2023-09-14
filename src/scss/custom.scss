@@ -1,0 +1,11 @@
+// Include any default variable overrides here (though functions won't be available)
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+//SCSS SYNTAX
+$base-color-rigth: #004BBC;
+$base-color-left: #A80000;
+
+:export {
+    rigth-color: $base-color-rigth;
+    left-color: $base-color-left;
+}
