@@ -12,8 +12,8 @@ export default function Tickers(props) {
           <div className='mx-1 text-white'>{item.name}</div>
           <div className='mx-2 text-white'>{item.last_value.toFixed(2)}</div>
           <div className='d-flex'>
-            <div className={Math.sign(item.variation) == 1 ? 'text-success' : 'text-danger'} style={{marginRight: 10}}>{Math.sign(item.variation) == 1 ? item.variation.toFixed(2) : item.variation.toFixed(4)}</div>
-            <div className={Math.sign(item.variation) == 1 ? 'text-success' : 'text-danger'} style={{marginRight: 10}}>{item.variation_percentage.toFixed(2) + '%'}</div>
+            <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{marginRight: 10}}>{Math.sign(item.variation) === 1 ? item.variation.toFixed(2) : item.variation.toFixed(4)}</div>
+            <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{marginRight: 10}}>{item.variation_percentage.toFixed(2) + '%'}</div>
           </div>
         </div>
       )}
