@@ -40,7 +40,7 @@ function App() {
       /* eslint-disable */
       initialLoad = true
       fetchData()
-      setInterval(() => { fetchData() }, 30000)
+      setInterval(() => { fetchData() }, 3000)
     }
   }, []);
 
