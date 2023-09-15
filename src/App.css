@@ -1,11 +1,3 @@
-/* Breakpoint	Class infix	Dimensions
-X-Small	None	<576px
-Small	sm	≥576px
-Medium	md	≥768px
-Large	lg	≥992px
-Extra large	xl	≥1200px
-Extra extra large	xxl	≥1400px */
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 html,
@@ -20,60 +12,37 @@ body {
   background: transparent;
   text-align: center;
   font-family: 'Lato', sans-serif;
-  color: #000;
 }
 
-main {
-  width: 100%;
-  margin: 0 auto;
-  text-align: left;
+:root {
+  --marquee-width: 100vw;
+  --marquee-height: 3rem;
+ /* --marquee-elements: 12;*/ /* defined with JavaScript */
+  --marquee-elements-displayed: 6;
+  --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+  --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
 }
-
-/* .container {
-  max-width: 95vw;
-} */
-
-/* @media (max-width: 596px) {
-  .container {
-    max-width: 100vw;
-  }
-} */
 
 .main-container {
-  height: 3rem;
+  width: var(--marquee-width);
+  height: var(--marquee-height);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #142D50;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-;
-  width: 100vw; */
 }
 
-.tickers-container {
-  position: relative;
+.marquee-content {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling var(--marquee-animation-duration) linear infinite;
 }
 
-.tickers {
-  position: absolute;
-  /* starts off the screen */
-  left: 120%; 
-  animation: scroll 25s infinite linear;
-}
-
-/* The animation code */
-@keyframes scroll {
-  from {
-    /* off to the screen left side*/
-    left: 120% 
-  }
-  to {
-    /* off to the screen rigth side*/
-    left: -200%
-  }
+@keyframes scrolling {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
 }
 
 .tickers-icon {
