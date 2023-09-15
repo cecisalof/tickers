@@ -12,25 +12,37 @@ body {
   background: transparent;
   text-align: center;
   font-family: 'Lato', sans-serif;
+  font-size: 20px;
 }
 
 :root {
   --marquee-width: 100vw;
-  --marquee-height: 3rem;
+  --marquee-height: 4rem;
  /* --marquee-elements: 12;*/ /* defined with JavaScript */
-  --marquee-elements-displayed: 6;
+  --marquee-elements-displayed: 5;
   --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
   --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
 }
 
-.main-container {
+.marquee {
   width: var(--marquee-width);
   height: var(--marquee-height);
+  overflow: hidden;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #142D50;
+}
+
+.marquee-content li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--marquee-element-width);
+  max-height: 100%;
+  white-space: nowrap;
 }
 
 .marquee-content {

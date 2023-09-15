@@ -18,18 +18,16 @@ export default function Tickers(props) {
   }, [marqueeContent])
 
   return (
-    <div className='d-flex align-center'>
+    <div className='d-flex align-center marquee'>
       <ul className='marquee-content'>
         {Array.isArray(tickers) === true && tickers.map(item => {
           return (
             <li className='d-flex align-items-center' key={item.id}>
-              <img className="tickers-icon mx-1" src={item.icon} alt="" />
+              <img className="tickers-icon mx-2" src={item.icon} alt="" />
               <div className='mx-1 text-white'>{item.name}</div>
-              <div className={item.last_value < item.current_value ? 'text-danger' : 'text-success'} style={{ marginRight: 10, marginLeft: 10 }}>{item.current_value.toFixed(2)}</div>
-              <div className='d-flex'>
-                <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{ marginRight: 10 }}>{Math.sign(item.variation) === 1 ? item.variation.toFixed(2) : item.variation.toFixed(4)}</div>
-                <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{ marginRight: 10 }}>{item.variation_percentage.toFixed(2) + '%'}</div>
-              </div>
+              <div className={item.last_value < item.current_value ? 'text-danger' : 'text-success'} style={{ marginRight: 5, marginLeft: 5 }}>{item.current_value.toFixed(2)}</div>
+              <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{ marginRight: 5, marginLeft: 5 }}>{Math.sign(item.variation) === 1 ? item.variation.toFixed(2) : item.variation.toFixed(4)}</div>
+                <div className={Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger'} style={{ marginRight: 5, marginLeft: 5 }}>{item.variation_percentage.toFixed(2) + '%'}</div>
             </li>
           )
         }
