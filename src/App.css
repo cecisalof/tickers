@@ -75,3 +75,9 @@ body {
     visibility: hidden;
   }
 }
+
+iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

@@ -1,4 +1,3 @@
-import { logDOM } from '@testing-library/react';
 import React, { useEffect, useState } from 'react'
 
 export default function Tickers(props) {
@@ -8,16 +7,13 @@ export default function Tickers(props) {
   const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
   const marqueeContent = document.querySelector("ul.marquee-content");
   const [randomIndex, setRandomIndex] = useState(marqueeElementsDisplayed);
-  console.log('randomIndex', randomIndex);
   const alteration = 0.01;
 
   const getRandomArbitrary = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     setRandomIndex(Math.floor(Math.random() * (max - min + 1)) + min);
-    console.log(Math.floor(Math.random() * (max - min + 1)) + min);
   }
-
 
   useEffect(() => {
     if (marqueeContent !== null) {
@@ -53,7 +49,7 @@ export default function Tickers(props) {
       <ul className='marquee-content'>
         {Array.isArray(tickers) === true && tickers.map((item, index) => {
           
-          /* ----------------- class and value conditions ---------------------- */
+          /* ----------------- classes and value conditions ---------------------- */
           const styleCondition = item.last_value < item.current_value ? 'text-danger blink' : item.last_value > item.current_value ? 'text-success blink' : 'text-light blink';
 
           const styleCondition2 = Math.sign(item.variation) === 1 ? 'text-success' : 'text-danger';
@@ -66,7 +62,6 @@ export default function Tickers(props) {
 
           const decimalCondition2Alteration = Math.sign(item.variation_percentage) === 1 && item.name === 'EUR/USD' ? '( +' + (item.variation_percentage + alteration).toFixed(3) + '%)' : Math.sign(item.variation_percentage) === 1 && !item.name !== 'EUR/USD' ? '( +' + (item.variation_percentage + alteration).toFixed(2) + '%)' : Math.sign(item.variation_percentage) !== 1 && item.name == 'EUR/USD' ? '(' + (item.variation_percentage + alteration).toFixed(3) + '%)' : '(' + (item.variation_percentage + alteration).toFixed(2) + '%)';
           /* --------------------------------------------------------------- */
-
 
           if (randomIndex === index) {
             return (
