@@ -57,16 +57,11 @@ function App() {
     };
 
     const fetchTimming = async () => {
-      // if (!isLoading) {
-      //   /* eslint-disable */
-      //   isLoading = true
       try {
         await getTickersControl();
       } catch (error) {
         console.log('Error al obtener los datos:', error);
       }
-      // isLoading = false
-      // }
     };
 
     if (initialLoad) {

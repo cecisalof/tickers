@@ -5,11 +5,6 @@ import News from './News';
 export default function MainLayout(props) {
 
     const { tickers } = props;
-
-    // useEffect (()=> {
-    //     console.log('tickersTimming', tickersTimming);
-    // }, [tickersTimming])
-
     return (
         <div className="MainLayout">
             <main>
