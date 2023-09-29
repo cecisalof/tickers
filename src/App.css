@@ -17,7 +17,7 @@ body {
 
 :root {
   --marquee-width: 100vw;
-  --marquee-height: 4rem;
+  --marquee-height: 2.6rem;
  /* --marquee-elements: 12;*/ /* defined with JavaScript */
   --marquee-elements-displayed: 6;
   --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
@@ -33,6 +33,16 @@ body {
   left: 0;
   right: 0;
   background-color: #142D50;
+}
+
+.marquee-news {
+  width: var(--marquee-width);
+  height: 2.6rem;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .marquee-content li {
