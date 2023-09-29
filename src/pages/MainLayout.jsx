@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Tickers from './Tickers';
-import News from './News';
 
 export default function MainLayout(props) {
 
