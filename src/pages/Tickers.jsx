@@ -63,7 +63,7 @@ export default function Tickers(props) {
           return (
             <li className='d-flex align-items-center ticker' key={item.id}>
               <img className="tickers-icon mx-2" src={item.icon} alt="" />
-              <div className='mx-1 text-white'>{item.name} {index} {randomIndex}</div>
+              <div className='mx-1 text-white'>{item.name}</div>
               {randomIndex === index ? (
                 <div className={styleCondition} style={{ marginRight: 5, marginLeft: 5 }}>
                   {item.name === 'EUR/USD' ? (item.current_value + alteration).toFixed(4) : (item.current_value + alteration).toFixed(2)}
