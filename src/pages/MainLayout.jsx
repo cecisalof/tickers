@@ -1,9 +1,11 @@
 import React from 'react';
 import Tickers from './Tickers';
+import News from './News';
 
 export default function MainLayout(props) {
 
-    const { tickers } = props;
+    const { tickers, firstCompo } = props;
+
     return (
         <div className="MainLayout">
             <main>
@@ -11,7 +13,12 @@ export default function MainLayout(props) {
                     <div className="row align-items-center mt-md-1">
                     </div>
                     <div className='row d-flex align-middle justify-content-center mb-3 tickers'>
-                        <Tickers tickers={tickers} />
+                        <div style={{display: !firstCompo && 'none' }} >
+                            <Tickers tickers={tickers} />
+                        </div>
+                        <div style={{display: firstCompo && 'none' }}>
+                            <News />
+                        </div>
                     </div>
                 </div>
             </main>

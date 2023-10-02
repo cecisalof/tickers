@@ -7,11 +7,11 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 
 
 function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [tickers, setTickers] = useState({});
   const [tickersTimming, setTickersTimming] = useState({});
+  const [firstCompo, setFirstCompo] = useState(true); // tickers compo
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  console.log(currentItemIndex);
 
   const getTickersInfo = async () => {
     try {
@@ -78,28 +78,30 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (location.pathname == '/') {
-      if (tickersTimming.time_stocks !== undefined) {
-        let timingStocks = Number(`${tickersTimming.time_stocks}000`);
-        setTimeout(() => {
-          navigate('/news')
-        }, timingStocks);
-      }
-    } else if (location.pathname == '/news') {
-      if (tickersTimming.time_news !== undefined) {
-        let timingNews = Number(`${tickersTimming.time_news}000`);
-        setTimeout(() => {
-          navigate('/')
-        }, timingNews)
+    const interval = setInterval(() => setCurrentItemIndex((currentItemIndex + 1)), 1000);
+    if (tickersTimming.time_stocks !== undefined && firstCompo) {
+      if (currentItemIndex === tickersTimming.time_stocks) {
+        setFirstCompo(!firstCompo); // control componente visibility
+        setCurrentItemIndex(0); // reset counter
       }
     }
-  }, [tickersTimming, location])
+    if (currentItemIndex === tickersTimming.time_news) {
+      console.log(tickersTimming.time_news);
+      setFirstCompo(!firstCompo); // control componente visibility
+      setCurrentItemIndex(0); // reset counter
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+
+  }, [currentItemIndex]);
 
   return (
-    <Routes>
-      <Route path="/" element={<TickersMainPage tickers={tickers} />} />
-      <Route path="/news" element={<News />} />
-    </Routes>
+    <div>
+      <TickersMainPage tickers={tickers} firstCompo={firstCompo} />
+    </div>
+
   );
 }
 
