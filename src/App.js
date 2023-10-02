@@ -2,16 +2,13 @@ import './App.css';
 import { getTickers, getTickersTimming } from './services'
 import React, { useState, useEffect } from 'react';
 import TickersMainPage from './pages/TickersMainPage';
-import News from './pages/News';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-
 
 function App() {
   const [tickers, setTickers] = useState({});
   const [tickersTimming, setTickersTimming] = useState({});
   const [firstCompo, setFirstCompo] = useState(true); // tickers compo
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
-  console.log(currentItemIndex);
+  console.log('counter', currentItemIndex);
 
   const getTickersInfo = async () => {
     try {
@@ -78,17 +75,21 @@ function App() {
   }, []);
 
   useEffect(() => {
+  
     const interval = setInterval(() => setCurrentItemIndex((currentItemIndex + 1)), 1000);
-    if (tickersTimming.time_stocks !== undefined && firstCompo) {
+
+    if (tickersTimming.time_stocks !== undefined && firstCompo === true) {
       if (currentItemIndex === tickersTimming.time_stocks) {
-        setFirstCompo(!firstCompo); // control componente visibility
+        setFirstCompo(false); // control componente visibility
         setCurrentItemIndex(0); // reset counter
       }
     }
-    if (currentItemIndex === tickersTimming.time_news) {
-      console.log(tickersTimming.time_news);
-      setFirstCompo(!firstCompo); // control componente visibility
-      setCurrentItemIndex(0); // reset counter
+    if (tickersTimming.time_news !== undefined && firstCompo === false) {
+      if (currentItemIndex === tickersTimming.time_news) {
+        console.log(tickersTimming.time_news);
+        setFirstCompo(true); // control componente visibility
+        setCurrentItemIndex(0); // reset counter
+      } 
     }
 
     return () => {
