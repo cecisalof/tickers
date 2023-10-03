@@ -8,7 +8,6 @@ function App() {
   const [tickersTimming, setTickersTimming] = useState({});
   const [firstCompo, setFirstCompo] = useState(true); // tickers compo
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
-  console.log('counter', currentItemIndex);
 
   const getTickersInfo = async () => {
     try {
@@ -28,6 +27,7 @@ function App() {
       const data = await getTickersTimming();
       if (data !== undefined) {
         setTickersTimming(data);
+        setCurrentItemIndex(0); // reset counter to avoid errors
       }
 
     } catch (error) {
@@ -54,21 +54,18 @@ function App() {
     };
 
     const fetchTimming = async () => {
-      try {
-        await getTickersControl();
-      } catch (error) {
-        console.log('Error al obtener los datos:', error);
-      }
+        try {
+          await getTickersControl();
+        } catch (error) {
+          console.log('Error al obtener los datos:', error);
+        }
     };
 
     if (initialLoad) {
       /* eslint-disable */
       initialLoad = true
-      setTimeout(
-        () => fetchTimming(),
-        1000
-      );
       fetchData()
+      fetchTimming()
       setInterval(() => { fetchData() }, 15000)
       setInterval(() => { fetchTimming() }, 60000)
     }
@@ -86,7 +83,6 @@ function App() {
     }
     if (tickersTimming.time_news !== undefined && firstCompo === false) {
       if (currentItemIndex === tickersTimming.time_news) {
-        console.log(tickersTimming.time_news);
         setFirstCompo(true); // control componente visibility
         setCurrentItemIndex(0); // reset counter
       } 

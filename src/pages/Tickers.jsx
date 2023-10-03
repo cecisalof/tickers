@@ -15,13 +15,15 @@ export default function Tickers(props) {
   }
 
   useEffect(() => {
-    if (marqueeContent !== null) {
-      root.style.setProperty("--marquee-elements", marqueeContent.children.length);
-
-      for (let i = 0; i < marqueeElementsDisplayed; i++) {
-        marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true))
+    setTimeout(() => {
+      if (marqueeContent !== null || marqueeContent !== undefined) {
+        root.style.setProperty("--marquee-elements", marqueeContent && marqueeContent.children.length);
+  
+        for (let i = 0; i < marqueeElementsDisplayed; i++) {
+          marqueeContent && marqueeContent.appendChild(marqueeContent && marqueeContent.children[i] && marqueeContent.children[i].cloneNode(true))
+        }
       }
-    }
+    }, 1000);
   }, [marqueeContent])
 
   let initialLoad = true
