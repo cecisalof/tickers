@@ -13,12 +13,12 @@ export default function MainLayout(props) {
                     <div className="row align-items-center mt-md-1">
                     </div>
                     <div className='row d-flex align-middle justify-content-center mb-3 tickers'>
-                        <div style={{display: true }} >
+                        <div style={{display: !firstCompo && 'none' }} >
                             <Tickers tickers={tickers} />
                         </div>
-                        {/* <div style={{display: firstCompo && 'none' }}>
+                        <div style={{display: firstCompo && 'none' }}>
                             <News />
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </main>
