@@ -25,7 +25,7 @@ body {
 }
 
 .marquee {
-  width: var(--marquee-width);
+  /* width: var(--marquee-width); */
   height: var(--marquee-height);
   overflow: hidden;
   position: fixed;
@@ -36,7 +36,7 @@ body {
 }
 
 .marquee-news {
-  width: var(--marquee-width);
+  /* width: var(--marquee-width); */
   height: 2.6rem;
   overflow: hidden;
   position: fixed;
@@ -50,9 +50,21 @@ body {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  width: var(--marquee-element-width);
+  /* width: var(--marquee-element-width); */
   max-height: 100%;
   white-space: nowrap;
+}
+
+.fw-bold{
+  font-weight: bold;
+}
+
+.text-danger{
+  color: #fb2d2d !important;
+}
+
+.text-success{
+  color: #1bb31b !important;
 }
 
 .marquee-content {
@@ -68,21 +80,28 @@ body {
 }
 
 .tickers-icon {
-  width: 30px;
+  height: var(--marquee-height);
+  padding: 8px 0 8px 0;
 }
 
 .blink {
-  animation: blink-animation 1s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  animation: blink-animation 0.2s steps(1, start);
+  -webkit-animation: blink-animation 0.2s steps(1, start);
 }
 @keyframes blink-animation {
-  to {
-    visibility: hidden;
+  0%, 100% {
+    color: inherit;
+  }
+  50% {
+    color: white;
   }
 }
 @-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
+  0%, 100% {
+    color: inherit;
+  }
+  50% {
+    color: white;
   }
 }
 

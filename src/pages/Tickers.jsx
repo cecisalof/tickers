@@ -6,7 +6,7 @@ export default function Tickers(props) {
   const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
   const marqueeContent = document.querySelector("ul.marquee-content");
   const [randomIndex, setRandomIndex] = useState(marqueeElementsDisplayed - 3);
-  const alteration = 0.01;
+  const alteration = 0.1;
 
   const getRandomArbitrary = (min, max) => {
     min = Math.ceil(min);
@@ -42,7 +42,7 @@ export default function Tickers(props) {
     if (initialLoad) {
       /* eslint-disable */
       initialLoad = true
-      setInterval(() => { randomAlteration() }, 3000)
+      setInterval(() => { randomAlteration() }, 1000)
     }
   }, []);
 
@@ -63,24 +63,25 @@ export default function Tickers(props) {
           /* --------------------------------------------------------------- */
 
           return (
-            <li className='d-flex align-items-center ticker' key={item.id}>
-              <img className="tickers-icon mx-2" src={item.icon} alt="" />
-              <div className='mx-1 text-white'>{item.name}</div>
+            <li className='d-flex align-items-center ticker text-white' key={item.id}>
+              <img className="tickers-icon" src={item.icon} alt="" />
+              <div className='mx-3 fw-bold'>{item.name}</div>
               {randomIndex === index ? (
                 <div className={styleCondition} style={{ marginRight: 5, marginLeft: 5 }}>
-                  {item.name === 'EUR/USD' ? (item.current_value + alteration).toFixed(4) : (item.current_value + alteration).toFixed(2)}
+                  {item.name === 'EUR/USD' ? (item.current_value + alteration).toFixed(5) : (item.current_value + alteration).toFixed(2)}
                 </div>
               ) : (
-                <div className={item.last_value < item.current_value ? 'text-danger' : item.last_value > item.current_value ? 'text-success' : 'text-light'} style={{ marginRight: 5, marginLeft: 5 }}>
-                  {item.name === 'EUR/USD' ? item.current_value.toFixed(4) : item.current_value.toFixed(2)}
+                <div className={ item.last_value < item.current_value ? 'text-danger' : item.last_value > item.current_value ? 'text-success' : 'text-danger'} style={{ marginRight: 5, marginLeft: 5 }}>
+                  {item.name === 'EUR/USD' ? item.current_value.toFixed(5) : item.current_value.toFixed(2)}
                 </div>
               )}
-              <div className={styleCondition2} style={{ marginRight: 5, marginLeft: 5 }}>
+              <div className={ styleCondition2} style={{ marginRight: 5, marginLeft: 5 }}>
                 {decimalCondition}
               </div>
-              <div className={styleCondition2} style={{ marginRight: 5, marginLeft: 5 }}>
+              <div className={ styleCondition2} style={{ marginRight: 5, marginLeft: 5 }}>
                 {decimalCondition2}
               </div>
+              <span className='text-white mx-3'>|</span>
             </li>
           )
         }
